@@ -1,24 +1,25 @@
 backend:
   name: git-gateway
-  branch: main
-  repo: Cortez-1/my-gallery  # 你的仓库地址
+  branch: main # 通常是 main 或 master
 
-media_folder: "uploads"      # 媒体文件存放在仓库根目录的 uploads 文件夹
-public_folder: "/uploads"    # 网站访问时，媒体文件的路径是 /uploads
+# 媒体文件（图片/视频）上传到哪里
+media_folder: "gallery/uploads" 
+# 前台网页访问这些文件的路径
+public_folder: "/gallery/uploads"
 
-file: "gallery.json"         # 数据文件 gallery.json 存放在仓库根目录
-format: json
-fields:
-  - label: "作品列表"
-    name: "items"
-    widget: "list"
+collections:
+  - name: "gallery_data"
+    label: "图片与视频库"
+    # 这里我们把数据存在 gallery 文件夹下的 data.json 里
+    # 这样不会干扰你原来的主页面代码
+    file: "gallery/data.json" 
+    label_singular: "媒体项"
     fields:
-      - label: "类型"
-        name: "type"
-        widget: "select"
-        options: ["image", "video"]
-      - label: "文件"
-        name: "file"
-        widget: "file"
-        # 这里的路径是相对于仓库根目录的
-        # 上传的文件会自动存放到 uploads 文件夹
+      - label: "作品列表"
+        name: "items"
+        widget: "list"
+        fields:
+          - {label: "标题", name: "title", widget: "string"}
+          - {label: "描述", name: "desc", widget: "text"}
+          - {label: "媒体类型", name: "type", widget: "select", options: ["image", "video"]}
+          - {label: "选择文件", name: "file", widget: "file", media_library: {config: {max_file_size: 50000000}}}
