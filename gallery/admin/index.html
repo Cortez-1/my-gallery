@@ -1,30 +1,12 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的后台管理</title>
-    <!-- Netlify Identity Widget 核心脚本 -->
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-    <!-- Decap CMS 核心样式和脚本 -->
-    <link rel="stylesheet" href="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.css" />
-    <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>内容管理后台</title>
 </head>
 <body>
-    <div id="ncms-root"></div>
-    <script>
-        // 初始化 Netlify Identity
-        netlifyIdentity.init({
-            APIUrl: window.location.origin + '/.netlify/identity'
-        });
-
-        // 监听登录状态变化
-        document.addEventListener('DOMContentLoaded', () => {
-            // 如果用户已登录，自动重定向到 CMS
-            if (netlifyIdentity.currentUser()) {
-                window.location.href = '/admin/#/collections/gallery_data';
-            }
-        });
-    </script>
+  <!-- 这一行代码就能加载整个后台系统 -->
+  <script src="https://unpkg.com/netlify-cms-app@latest/dist/netlify-cms.js"></script>
 </body>
 </html>
