@@ -1,0 +1,7 @@
+{
+  "buildCommand": null,
+  "outputDirectory": "gallery",
+  "github": {
+    "silent": true
+  }
+}
